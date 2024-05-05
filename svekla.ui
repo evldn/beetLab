@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Лабораторная работа</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(x1:0.5, y1:1, x2:0.5, y2:0, stop:0 #2F9296, stop:1 #46B7B9);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Plain</enum>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="welcomePage">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>780</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Open Sans Condensed'; font-size:22pt;&quot;&gt;Выберете модуль для запуска:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>780</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Open Sans Condensed</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-weight: bold;
+font-family:'Open Sans Condensed';</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot;font-family:'Open Sans Condensed'; font-size:24pt; font-weight:400;&quot;&gt;Программа&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Open Sans Condensed'; font-size:24pt;&quot;&gt;&amp;quot;Переработка партий сахарной свеклы&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testStartButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>350</y>
+        <width>780</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(135, 223, 214, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Модуль тестирования.
+Пользователю предлагается ввести входные параметры для автоматической инициализации матриц, а затем
+запустить тестирование всех имеющихся стратегий. По окончании тестирования пользователю выводится
+информация о самой лучшей стратегии, а также предоставляется возможность вывести графики и
+сводную таблицу.</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="programStartButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>240</y>
+        <width>780</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Open Sans Condensed</family>
+        <pointsize>16</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(135, 223, 214, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+cursor: pointer;
+}</string>
+      </property>
+      <property name="text">
+       <string>Программный модуль.
+Пользователю предлагается считать матрицу из файла, а затем выбрать стратегию, которую он хочет
+применить к данной матрице.</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="programPage">
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>781</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-weight: bold;
+font-size: 20pt;
+font-family: Open Sans Condensed;</string>
+      </property>
+      <property name="text">
+       <string>Программный модуль</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frameMatrix">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>781</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-size: 14pt;
+font-family:'Open Sans Condensed';</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>781</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: 0px solid rbga(255, 255, 255, 40);
+border-radius: 10px;
+color: white;
+font-size: 16pt;
+font-family: Open Sans Condensed;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Матрица&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>761</width>
+         <height>281</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget{
+	background-color: transparent;
+	border: none;
+}
+QTableView { 
+	gridline-color: transparent;
+	gridline-width: none;
+	outline: none;
+align: AlignVCenter ;
+}
+QHeaderView {
+	background-color: transparent;
+	border: none;
+}
+
+QHeaderView::section{
+	background-color: transparent;
+}
+
+QTableWidget QTableCornerButton::section {
+    background: transparent;
+	border: none;
+}
+
+QTableWidget::item {
+	border: 1px solid white;
+	border-radius: 5px;
+	text-alignment: AlignHCenter;
+}
+
+QTableWidget::item::selected {
+	border: none;
+}</string>
+       </property>
+       <property name="autoScroll">
+        <bool>true</bool>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+       </property>
+       <property name="showDropIndicator" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="gridStyle">
+        <enum>Qt::PenStyle::SolidLine</enum>
+       </property>
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>0</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+      </widget>
+     </widget>
+     <widget class="QComboBox" name="chooseStrategy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>410</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+	background-color: rgba(255,255,255,30);
+	border: 1px solid white;
+	border-radius: 10px;
+	font-size: 16pt;
+	font-family:'Open Sans Condensed';
+	color:white;
+}
+
+QComboBox:on {
+	border: 2px solid white;
+}
+
+QComboBox QAbstractItemView {
+    font-size: 16px;
+	border: 1px solid rgba(0,0,0,10%);
+	padding: 5px;
+	background-color: #46B7B9;
+	outline: 0px;
+	color: white;
+}
+</string>
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+      <property name="placeholderText">
+       <string>Выберете стратегию</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Венгерский алгоритм</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Жадный алгоритм</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Бережливый алгоритм</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Жадно-бережливый алгоритм</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Бережливо-жадный алгоритм</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="runProcessProgramModule">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>160</y>
+        <width>361</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(135, 223, 214, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Запустить процесс</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>781</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-size: 14pt;
+font-family: Consolas</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>381</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 14pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>1. Формат ввода данных: матрица (NxN)
+2. Формат файла: текстовый формат (.txt)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="readMatrixFileButton">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>10</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans Condensed</family>
+         <pointsize>16</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(135, 223, 214, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+       </property>
+       <property name="text">
+        <string>Считать матрицу из файла</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="backToWelcomeButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>560</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(135, 223, 214, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Назад</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="testPage">
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>771</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-size: 14pt;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>761</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: 0px solid rbga(255, 255, 255, 40);
+color: white;
+font-weight: bold;
+font-size: 18pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Параметры</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Количество дней (n):</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="n">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>40</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="a_min">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>80</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>80</y>
+         <width>51</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-weight: bold;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;≤ a&lt;span style=&quot; vertical-align:sub;&quot;&gt;i&lt;/span&gt; ≤&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="a_max">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>80</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>190</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Коэффициент деградации:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>120</y>
+         <width>51</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-weight: bold;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;≤ b&lt;span style=&quot; vertical-align:sub;&quot;&gt;ij&lt;/span&gt; ≤&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="b_max">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>120</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="b_min">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>120</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="ripeningCheck">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>40</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox{
+background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}</string>
+       </property>
+       <property name="text">
+        <string>Дозаривание</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>80</y>
+         <width>240</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Количество дней дозаривания (ν):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="nu">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>80</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>120</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Коэффициент деградации:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="b_min_2">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>120</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="b_max_2">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>120</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>160</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ 
+border: 1px solid white;
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';
+background-color: transparent;
+}
+QLineEdit:focus{
+border: 2px solid white;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>630</x>
+         <y>120</y>
+         <width>51</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-weight: bold;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;≤ b&lt;span style=&quot; vertical-align:sub;&quot;&gt;ij&lt;/span&gt; ≤&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="runProcessTest">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>341</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(255, 255, 255, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+       </property>
+       <property name="text">
+        <string>Запустить процесс</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="showGraphicsTest">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>170</y>
+         <width>361</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(255, 255, 255, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+       </property>
+       <property name="text">
+        <string>Показать график</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>190</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: none;
+color: white;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Коэффициент сахаристости:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="backToWelcomeButton_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>560</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(255, 255, 255, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Назад</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>771</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-weight: bold;
+font-size: 20pt;
+font-family:'Open Sans Condensed';</string>
+      </property>
+      <property name="text">
+       <string>Модуль тестирования</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_13</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>510</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>622</x>
+     <y>168</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>nu</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>128</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>780</x>
+     <y>177</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_14</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>b_min_2</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>474</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>698</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_15</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>462</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>743</x>
+     <y>213</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ripeningCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>b_max_2</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>474</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>802</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
