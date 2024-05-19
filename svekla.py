@@ -8,6 +8,7 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
+from PySide6.QtCharts import QChartView
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -179,6 +180,9 @@ class Ui_MainWindow(object):
         self.tableWidget.horizontalHeader().setHighlightSections(True)
         self.tableWidget.verticalHeader().setVisible(False)
         self.chooseStrategy = QComboBox(self.programPage)
+        self.chooseStrategy.addItem("")
+        self.chooseStrategy.addItem("")
+        self.chooseStrategy.addItem("")
         self.chooseStrategy.addItem("")
         self.chooseStrategy.addItem("")
         self.chooseStrategy.addItem("")
@@ -581,6 +585,9 @@ class Ui_MainWindow(object):
 "font-size: 20pt;\n"
 "font-family:'Open Sans Condensed';")
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.chartView1 = QChartView(self.testPage)
+        self.chartView1.setObjectName(u"chartView1")
+        self.chartView1.setGeometry(QRect(425, 310, 351, 271))
         self.stackedWidget.addWidget(self.testPage)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -619,6 +626,9 @@ class Ui_MainWindow(object):
         self.chooseStrategy.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0411\u0435\u0440\u0435\u0436\u043b\u0438\u0432\u044b\u0439 \u0430\u043b\u0433\u043e\u0440\u0438\u0442\u043c", None))
         self.chooseStrategy.setItemText(3, QCoreApplication.translate("MainWindow", u"\u0416\u0430\u0434\u043d\u043e-\u0431\u0435\u0440\u0435\u0436\u043b\u0438\u0432\u044b\u0439 \u0430\u043b\u0433\u043e\u0440\u0438\u0442\u043c", None))
         self.chooseStrategy.setItemText(4, QCoreApplication.translate("MainWindow", u"\u0411\u0435\u0440\u0435\u0436\u043b\u0438\u0432\u043e-\u0436\u0430\u0434\u043d\u044b\u0439 \u0430\u043b\u0433\u043e\u0440\u0438\u0442\u043c", None))
+        self.chooseStrategy.setItemText(5, QCoreApplication.translate("MainWindow", u"CTG", None))
+        self.chooseStrategy.setItemText(6, QCoreApplication.translate("MainWindow", u"T(k)G", None))
+        self.chooseStrategy.setItemText(7, QCoreApplication.translate("MainWindow", u"G(k)", None))
 
         self.chooseStrategy.setCurrentText("")
         self.chooseStrategy.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u0441\u0442\u0440\u0430\u0442\u0435\u0433\u0438\u044e", None))
@@ -629,13 +639,15 @@ class Ui_MainWindow(object):
         self.backToWelcomeButton.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0434\u043d\u0435\u0439 (n):", None))
-        self.a_min.setText("")
+        self.n.setText(QCoreApplication.translate("MainWindow", u"20", None))
+        self.n.setPlaceholderText("")
+        self.a_min.setText(QCoreApplication.translate("MainWindow", u"20", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u2264 a<span style=\" vertical-align:sub;\">i</span> \u2264</p></body></html>", None))
-        self.a_max.setText("")
+        self.a_max.setText(QCoreApplication.translate("MainWindow", u"25", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u0434\u0435\u0433\u0440\u0430\u0434\u0430\u0446\u0438\u0438:", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u2264 b<span style=\" vertical-align:sub;\">ij</span> \u2264</p></body></html>", None))
-        self.b_max.setText("")
-        self.b_min.setText("")
+        self.b_max.setText(QCoreApplication.translate("MainWindow", u"0.99", None))
+        self.b_min.setText(QCoreApplication.translate("MainWindow", u"0.96", None))
         self.ripeningCheck.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0437\u0430\u0440\u0438\u0432\u0430\u043d\u0438\u0435", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0434\u043d\u0435\u0439 \u0434\u043e\u0437\u0430\u0440\u0438\u0432\u0430\u043d\u0438\u044f (\u03bd):</p></body></html>", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u0434\u0435\u0433\u0440\u0430\u0434\u0430\u0446\u0438\u0438:", None))

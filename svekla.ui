@@ -33,7 +33,7 @@
      <enum>QFrame::Shadow::Plain</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QLabel" name="label_2">
@@ -384,6 +384,21 @@ QComboBox QAbstractItemView {
         <string>Бережливо-жадный алгоритм</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>CTG</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>T(k)G</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>G(k)</string>
+       </property>
+      </item>
      </widget>
      <widget class="QPushButton" name="runProcessProgramModule">
       <property name="geometry">
@@ -626,11 +641,17 @@ QLineEdit:focus{
 border: 2px solid white;
 }</string>
        </property>
+       <property name="text">
+        <string>20</string>
+       </property>
        <property name="maxLength">
         <number>5</number>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string/>
        </property>
       </widget>
       <widget class="QLineEdit" name="a_min">
@@ -662,7 +683,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>20</string>
        </property>
        <property name="maxLength">
         <number>2</number>
@@ -724,7 +745,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>25</string>
        </property>
        <property name="maxLength">
         <number>2</number>
@@ -809,7 +830,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>0.99</string>
        </property>
        <property name="maxLength">
         <number>4</number>
@@ -847,7 +868,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>0.96</string>
        </property>
        <property name="maxLength">
         <number>4</number>
@@ -1201,10 +1222,27 @@ font-family:'Open Sans Condensed';</string>
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QChartView" name="chartView1">
+      <property name="geometry">
+       <rect>
+        <x>425</x>
+        <y>310</y>
+        <width>351</width>
+        <height>271</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>qchartview</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

@@ -1,7 +1,6 @@
 import sys
 import random
 
-from PySide6 import QtGui
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
 
@@ -58,45 +57,74 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
             indexes = algo.get_greedy_provident_solution(self.matrix)
         if strategy == "Бережливо-жадный алгоритм":
             indexes = algo.get_provident_greedy_solution(self.matrix)
+        if strategy == "G(k)":
+            indexes = algo.get_greedy_solution_upgrade(self.matrix, 3)
+        if strategy == "T(k)G":
+            indexes = algo.get_provident_greedy_solution_upgrade(self.matrix, 5, 3)
+        if strategy == "CTG":
+            indexes = algo.CTG(self.matrix, 5)
         for par in indexes:
             self.tableWidget.item(par[0], par[1]).setFont(font)
 
     def run(self):
-        maxes = [0] * 5
+        maxes = [0] * 7
         if self.ripeningCheck.isChecked():
             nu = int(self.nu.text())
         else:
             nu = int(int(self.n.text()) / 2)
         for i in range(50):
             matrix = self.generateMatrix()
-            solution = [0] * 5
+            solution = [self.calculateFunc(matrix, algo.get_greedy_solution(matrix)),
+                        self.calculateFunc(matrix, algo.get_provident_solution(matrix)),
+                        self.calculateFunc(matrix, algo.get_greedy_provident_solution(matrix, nu)),
+                        self.calculateFunc(matrix, algo.get_provident_greedy_solution(matrix, nu)),
+                        self.calculateFunc(matrix, algo.CTG(matrix, nu)),
+                        self.calculateFunc(matrix, algo.get_provident_greedy_solution_upgrade(matrix, nu, 3)),
+                        self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, 3))
+                        ]
 
-            solution.append(self.calculateFunc(matrix, algo.get_max_solution(matrix)))
-            solution.append(self.calculateFunc(matrix, algo.get_greedy_solution(matrix)))
-            solution.append(self.calculateFunc(matrix, algo.get_provident_solution(matrix)))
-            solution.append(self.calculateFunc(matrix, algo.get_greedy_provident_solution(matrix, nu)))
-            solution.append(self.calculateFunc(matrix, algo.get_provident_greedy_solution(matrix, nu)))
+            # print(solution)
+            maxes[solution.index(max(solution))] += 1
+        # print(maxes)
 
-            print(solution)
-            maxes[solution.index(max(solution[1:5]))] += 1
-        print(maxes)
+        k_for_tkg = []
+        k_for_gk = []
 
         matrix = self.generateMatrix()
-        print(matrix)
+
+        for i in range(0, len(matrix)):
+            k_for_gk.append(self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, i+1)))
+            k_for_tkg.append(self.calculateFunc(matrix, algo.get_provident_greedy_solution_upgrade(matrix, nu, i+1)))
+        max_k_for_tkg = k_for_tkg.index(max(k_for_tkg))
+        max_k_for_gk = k_for_gk.index(max(k_for_gk))
+
+        # print(matrix)
         solution = [self.calculateFunc(matrix, algo.get_max_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_greedy_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_provident_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_greedy_provident_solution(matrix, nu)),
-                    self.calculateFunc(matrix, algo.get_provident_greedy_solution(matrix, nu))]
+                    self.calculateFunc(matrix, algo.get_provident_greedy_solution(matrix, nu)),
+                    self.calculateFunc(matrix, algo.CTG(matrix, nu)),
+                    self.calculateFunc(matrix, algo.get_provident_greedy_solution_upgrade(matrix, nu, max_k_for_tkg+1)),
+                    self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, max_k_for_gk+1))
+                    ]
 
-        print(solution)
+        # print(solution)
         max_ind = solution.index(max(solution[1:]))
-        print(max_ind)
+        # print(max_ind)
         min_value = min(solution[1:])
-        names = ["Венг", "Жад", "Бер", "Жад-Бер", "Бер-Жад"]
-        for i in range(5):
-            if i == max_ind:
+        names = ["Венгерский", "Жадный", "Бережливый", "Жадно-\nБережливый", "Бережливо-\nЖадный", "CTG", "T(k)G",
+                 "G(k)"]
+        maxim_ind = maxes.index(max(maxes)) + 1
+        for i in range(8):
+            if i == max_ind and i == maxim_ind:
+                plt.bar(names[i], solution[i], width=0.6, color="red", label=names[i], edgecolor="green", linewidth=2,
+                        hatch='\\\\\\')
+            elif i == max_ind:
                 plt.bar(names[i], solution[i], width=0.6, color="red", label=names[i])
+            elif i == maxim_ind:
+                plt.bar(names[i], solution[i], width=0.6, color="blue", label=names[i], edgecolor="green", linewidth=2,
+                        hatch='\\\\\\')
             else:
                 plt.bar(names[i], solution[i], width=0.6, color="blue", label=names[i])
         plt.ylim(min_value - (min_value * 0.1))
