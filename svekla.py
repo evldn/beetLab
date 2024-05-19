@@ -8,7 +8,6 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCharts import QChartView
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -518,26 +517,9 @@ class Ui_MainWindow(object):
         self.label_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.runProcessTest = QPushButton(self.frame_2)
         self.runProcessTest.setObjectName(u"runProcessTest")
-        self.runProcessTest.setGeometry(QRect(10, 170, 341, 41))
+        self.runProcessTest.setGeometry(QRect(10, 170, 751, 41))
         self.runProcessTest.setCursor(QCursor(Qt.PointingHandCursor))
         self.runProcessTest.setStyleSheet(u"QPushButton{\n"
-"color: white;\n"
-"background-color: rgba(255, 255, 255, 40);\n"
-"border: 1px solid rgba(255, 255, 255, 50);\n"
-"border-radius: 10px;\n"
-"font-size: 16pt;\n"
-"font-family:'Open Sans Condensed';\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"background-color: rgba(255, 255, 255, 60);\n"
-"}")
-        self.showGraphicsTest = QPushButton(self.frame_2)
-        self.showGraphicsTest.setObjectName(u"showGraphicsTest")
-        self.showGraphicsTest.setEnabled(False)
-        self.showGraphicsTest.setGeometry(QRect(400, 170, 361, 41))
-        self.showGraphicsTest.setCursor(QCursor(Qt.PointingHandCursor))
-        self.showGraphicsTest.setStyleSheet(u"QPushButton{\n"
 "color: white;\n"
 "background-color: rgba(255, 255, 255, 40);\n"
 "border: 1px solid rgba(255, 255, 255, 50);\n"
@@ -585,9 +567,6 @@ class Ui_MainWindow(object):
 "font-size: 20pt;\n"
 "font-family:'Open Sans Condensed';")
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.chartView1 = QChartView(self.testPage)
-        self.chartView1.setObjectName(u"chartView1")
-        self.chartView1.setGeometry(QRect(425, 310, 351, 271))
         self.stackedWidget.addWidget(self.testPage)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -639,7 +618,7 @@ class Ui_MainWindow(object):
         self.backToWelcomeButton.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0434\u043d\u0435\u0439 (n):", None))
-        self.n.setText(QCoreApplication.translate("MainWindow", u"20", None))
+        self.n.setText(QCoreApplication.translate("MainWindow", u"30", None))
         self.n.setPlaceholderText("")
         self.a_min.setText(QCoreApplication.translate("MainWindow", u"20", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u2264 a<span style=\" vertical-align:sub;\">i</span> \u2264</p></body></html>", None))
@@ -650,12 +629,12 @@ class Ui_MainWindow(object):
         self.b_min.setText(QCoreApplication.translate("MainWindow", u"0.96", None))
         self.ripeningCheck.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0437\u0430\u0440\u0438\u0432\u0430\u043d\u0438\u0435", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0434\u043d\u0435\u0439 \u0434\u043e\u0437\u0430\u0440\u0438\u0432\u0430\u043d\u0438\u044f (\u03bd):</p></body></html>", None))
+        self.nu.setText(QCoreApplication.translate("MainWindow", u"10", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u0434\u0435\u0433\u0440\u0430\u0434\u0430\u0446\u0438\u0438:", None))
-        self.b_min_2.setText("")
-        self.b_max_2.setText("")
+        self.b_min_2.setText(QCoreApplication.translate("MainWindow", u"1.01", None))
+        self.b_max_2.setText(QCoreApplication.translate("MainWindow", u"1.05", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u2264 b<span style=\" vertical-align:sub;\">ij</span> \u2264</p></body></html>", None))
         self.runProcessTest.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u043f\u0440\u043e\u0446\u0435\u0441\u0441", None))
-        self.showGraphicsTest.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0433\u0440\u0430\u0444\u0438\u043a", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u0441\u0430\u0445\u0430\u0440\u0438\u0441\u0442\u043e\u0441\u0442\u0438:", None))
         self.backToWelcomeButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u041c\u043e\u0434\u0443\u043b\u044c \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f", None))
