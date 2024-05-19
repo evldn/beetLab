@@ -642,7 +642,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string>20</string>
+        <string>30</string>
        </property>
        <property name="maxLength">
         <number>5</number>
@@ -950,6 +950,9 @@ QLineEdit:focus{
 border: 2px solid white;
 }</string>
        </property>
+       <property name="text">
+        <string>10</string>
+       </property>
        <property name="maxLength">
         <number>5</number>
        </property>
@@ -1009,7 +1012,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>1.01</string>
        </property>
        <property name="maxLength">
         <number>4</number>
@@ -1047,7 +1050,7 @@ border: 2px solid white;
 }</string>
        </property>
        <property name="text">
-        <string/>
+        <string>1.05</string>
        </property>
        <property name="maxLength">
         <number>4</number>
