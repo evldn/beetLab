@@ -549,8 +549,8 @@ background-color: rgba(255, 255, 255, 60);
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>771</width>
-        <height>221</height>
+        <width>981</width>
+        <height>161</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -571,7 +571,7 @@ font-size: 14pt;</string>
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>761</width>
+         <width>711</width>
          <height>31</height>
         </rect>
        </property>
@@ -580,7 +580,7 @@ font-size: 14pt;</string>
 border: 0px solid rbga(255, 255, 255, 40);
 color: white;
 font-weight: bold;
-font-size: 18pt;
+font-size: 16pt;
 font-family:'Open Sans Condensed';</string>
        </property>
        <property name="text">
@@ -1086,9 +1086,9 @@ font-family:'Open Sans Condensed';</string>
       <widget class="QPushButton" name="runProcessTest">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>170</y>
-         <width>751</width>
+         <x>790</x>
+         <y>70</y>
+         <width>171</width>
          <height>41</height>
         </rect>
        </property>
@@ -1141,9 +1141,9 @@ font-family:'Open Sans Condensed';</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>560</y>
-        <width>91</width>
-        <height>31</height>
+        <y>710</y>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="cursor">
@@ -1172,7 +1172,7 @@ background-color: rgba(255, 255, 255, 60);
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>771</width>
+        <width>981</width>
         <height>51</height>
        </rect>
       </property>
@@ -1192,79 +1192,147 @@ font-family:'Open Sans Condensed';</string>
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="MplWidget" name="MplHist" native="true">
+     <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>310</y>
-        <width>370</width>
-        <height>210</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="MplWidget" name="MplLine" native="true">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>310</y>
-        <width>370</width>
-        <height>210</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="plusButtonHist">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>530</y>
-        <width>91</width>
-        <height>24</height>
+        <y>250</y>
+        <width>981</width>
+        <height>451</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton{
+       <string notr="true">background-color: rgba(255, 255, 255);
+border: 1px solid white;
+border-radius: 10px;
+color: white;
+font-size: 14pt;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="MplWidget" name="MplLine" native="true">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>30</y>
+         <width>475</width>
+         <height>300</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="MplWidget" name="MplHist" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>475</width>
+         <height>300</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>971</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: 0px solid rbga(255, 255, 255, 40);
+color: white;
+font-weight: bold;
+font-size: 16pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>Результаты</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plusButtonHist">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>340</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
 color: white;
 background-color: rgba(255, 255, 255, 40);
 border: 1px solid rgba(255, 255, 255, 50);
 border-radius: 10px;
-font-size: 16pt;
+font-size: 14pt;
 font-family:'Open Sans Condensed';
 }
 
 QPushButton:hover {
 background-color: rgba(255, 255, 255, 60);
 }</string>
-      </property>
-      <property name="text">
-       <string>Приблизить</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="plusButtonLine">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>530</y>
-        <width>101</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
+       </property>
+       <property name="text">
+        <string>Открыть</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plusButtonLine">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>340</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
 color: white;
 background-color: rgba(255, 255, 255, 40);
 border: 1px solid rgba(255, 255, 255, 50);
 border-radius: 10px;
-font-size: 16pt;
+font-size: 14pt;
 font-family:'Open Sans Condensed';
 }
 
 QPushButton:hover {
 background-color: rgba(255, 255, 255, 60);
 }</string>
-      </property>
-      <property name="text">
-       <string>Приблизить</string>
-      </property>
+       </property>
+       <property name="text">
+        <string>Открыть</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="result_label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>380</y>
+         <width>961</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255);
+border: 0px solid rbga(255, 255, 255, 40);
+color: white;
+font-weight: bold;
+font-size: 14pt;
+font-family:'Open Sans Condensed';</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

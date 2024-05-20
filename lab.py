@@ -13,8 +13,6 @@ from svekla import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from tkinter import filedialog
 
-from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as NavigationToolbar)
-
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
@@ -32,6 +30,7 @@ class MplCanvas(FigureCanvasQTAgg):
 class Svekla_GUI(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
+        self.colors = ["grey", "#9966cc", "#26619c", "#7f1734", "#e2725b", "#00755e", "#36648b", "#ffbf00"]
         self.maxim_ind = None
         self.max_ind = None
         self.names = None
@@ -66,9 +65,13 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         return s
 
     def runDemo(self):
+        font = QFont("Open Sans Condensed", 14)
+        font.setBold(False)
+        for i in range(len(self.matrix)):
+            for j in range(len(self.matrix[i])):
+                self.tableWidget.item(i,j).setFont(font)
         strategy = str(self.chooseStrategy.currentText())
         indexes = None
-        font = QFont("Open Sans Condensed", 14)
         font.setBold(True)
         if strategy == "Венгерский алгоритм":
             indexes = algo.get_max_solution(self.matrix)
@@ -77,15 +80,15 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         if strategy == "Бережливый алгоритм":
             indexes = algo.get_provident_solution(self.matrix)
         if strategy == "Жадно-бережливый алгоритм":
-            indexes = algo.get_greedy_provident_solution(self.matrix)
+            indexes = algo.get_greedy_provident_solution(self.matrix, (len(self.matrix) / 2))
         if strategy == "Бережливо-жадный алгоритм":
-            indexes = algo.get_provident_greedy_solution(self.matrix)
+            indexes = algo.get_provident_greedy_solution(self.matrix, int(int(self.n.text()) / 2))
         if strategy == "G(k)":
-            indexes = algo.get_greedy_solution_upgrade(self.matrix, 3)
+            indexes = algo.get_greedy_solution_upgrade(self.matrix, 8)
         if strategy == "T(k)G":
-            indexes = algo.get_provident_greedy_solution_upgrade(self.matrix, 5, 3)
+            indexes = algo.get_provident_greedy_solution_upgrade(self.matrix, (len(self.matrix) / 2), 10)
         if strategy == "CTG":
-            indexes = algo.CTG(self.matrix, 5)
+            indexes = algo.CTG(self.matrix, (len(self.matrix) / 2))
         for par in indexes:
             self.tableWidget.item(par[0], par[1]).setFont(font)
 
@@ -97,6 +100,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         else:
             nu = int(int(self.n.text()) / 2)
         for i in range(50):
+            print(i)
             matrix = self.generateMatrix()
 
             solution = [self.calculateFunc(matrix, algo.get_greedy_solution(matrix)),
@@ -132,8 +136,8 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
                     self.calculateFunc(matrix, algo.get_provident_greedy_solution(matrix, nu)),
                     self.calculateFunc(matrix, algo.CTG(matrix, nu)),
                     self.calculateFunc(matrix,
-                                       algo.get_provident_greedy_solution_upgrade(matrix, nu, max_k_for_tkg + 1)),
-                    self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, max_k_for_gk + 1))
+                                       algo.get_provident_greedy_solution_upgrade(matrix, nu, 10)),
+                    self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, 8))
                     ]
         self.allSolution.append(self.solution[1:])
 
@@ -142,9 +146,10 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         # print(max_ind)
         min_value = min(self.solution[1:])
         self.names = ["Максимальная", "Жадная", "Бережливая", "Жадно-\nБережливая", "Бережливо-\nЖадная", "CTG",
-                 "T(k)G\nk=10",
-                 "G(k)\nk=8"]
+                 "T(k)G (k = 10)",
+                 "G(k) (k = 8)"]
         self.maxim_ind = maxes.index(max(maxes)) + 1
+
 
         self.MplLine.canvas.axes.clear()
         for j in range(0, 7):
@@ -153,7 +158,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
             for i in range(len(self.allSolution)):
                 x.append(i)
                 y.append(self.allSolution[i][j])
-            self.MplLine.canvas.axes.plot(x, y, label=self.names[j + 1], marker='o', markersize=3)
+            self.MplLine.canvas.axes.plot(x, y, label=self.names[j + 1], marker='o', markersize=3, color=self.colors[j+1])
         self.MplLine.canvas.axes.set_title("Результаты стратегий по годам")
         self.MplLine.canvas.draw()
 
@@ -163,34 +168,44 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         self.MplHist.canvas.axes.clear()
         for i in range(8):
             if i == self.max_ind and i == self.maxim_ind:
-                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="red", label=names_short[i], edgecolor="green", linewidth=2,
-                        hatch='\\\\\\')
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="red", label=names_short[i], edgecolor="black", linewidth=2,
+                        hatch='X')
             elif i == self.max_ind:
-                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="red", label=names_short[i])
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="#BDECB6", label=names_short[i], edgecolor="black", linewidth=2,
+                        hatch='//')
             elif i == self.maxim_ind:
-                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="blue", label=names_short[i], edgecolor="green", linewidth=2,
-                        hatch='\\\\\\')
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="#BDECB6", label=names_short[i], edgecolor="black", linewidth=2,
+                        hatch='\\\\')
             else:
-                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="blue", label=names_short[i])
-        self.MplHist.canvas.axes.set_title("Результаты стратегий по годам")
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="#BDECB6", label=names_short[i], edgecolor="black")
+        self.MplHist.canvas.axes.set_title("Результаты стратегий в последний год")
+        self.MplHist.canvas.axes.set_ylim(min_value - (min_value * 0.1))
         self.MplHist.canvas.draw()
+
+        result = "Лучший результат (частота = " + str(max(maxes)) + ") показала " + self.names[self.maxim_ind] + " стратегия. Данная стратегия вместе с остальными была применена к новой матрице.\n"
+        if (self.maxim_ind != self.max_ind):
+            result += "На новой матрице лучший результат показала " + self.names[self.max_ind] + " стратегия."
+        else:
+            result += "На новой матрице она вновь показала лучший результат."
+        self.result_label.setText(result)
 
     def showHist(self):
         min_value = min(self.solution[1:])
         plt.figure()
         for i in range(8):
             if i == self.max_ind and i == self.maxim_ind:
-                plt.bar(self.names[i], self.solution[i], width=0.6, color="red", label=self.names[i], edgecolor="green",
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="red", label=self.names[i], edgecolor="black",
                         linewidth=2,
-                        hatch='\\\\\\')
+                        hatch='X')
             elif i == self.max_ind:
-                plt.bar(self.names[i], self.solution[i], width=0.6, color="red", label=self.names[i])
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="#BDECB6", label=self.names[i], edgecolor="black", linewidth=2,
+                        hatch='//')
             elif i == self.maxim_ind:
-                plt.bar(self.names[i], self.solution[i], width=0.6, color="blue", label=self.names[i], edgecolor="green",
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="#BDECB6", label=self.names[i], edgecolor="black",
                         linewidth=2,
-                        hatch='\\\\\\')
+                        hatch='\\\\')
             else:
-                plt.bar(self.names[i], self.solution[i], width=0.6, color="blue", label=self.names[i])
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="#BDECB6", label=self.names[i], edgecolor="black")
         plt.ylim(min_value - (min_value * 0.1))
         plt.title("Результаты стратегий в последний год")
         plt.xlabel("Стратегия")
@@ -205,7 +220,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
             for i in range(len(self.allSolution)):
                 x.append(i)
                 y.append(self.allSolution[i][j])
-            plt.plot(x, y, label=self.names[j + 1], marker='o', markersize=3)
+            plt.plot(x, y, label=self.names[j + 1], marker='o', markersize=3, color=self.colors[j+1])
         plt.title("Результаты стратегий по годам")
         plt.xlabel("Год")
         plt.ylabel("Целевая функция")
@@ -213,12 +228,16 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         plt.show()
 
     def switch_to_welcome(self):
+        self.setFixedSize(800, 600)
+        self.stackedWidget.setFixedSize(800, 600)
         self.stackedWidget.setCurrentIndex(0)
 
     def switch_to_program(self):
         self.stackedWidget.setCurrentIndex(1)
 
     def switch_to_test(self):
+        self.setFixedSize(1000, 750)
+        self.stackedWidget.setFixedSize(1000, 750)
         self.stackedWidget.setCurrentIndex(2)
 
     def readMatrix(self):
