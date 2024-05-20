@@ -1192,10 +1192,92 @@ font-family:'Open Sans Condensed';</string>
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
+     <widget class="MplWidget" name="MplHist" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>370</width>
+        <height>210</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="MplWidget" name="MplLine" native="true">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>310</y>
+        <width>370</width>
+        <height>210</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="plusButtonHist">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>530</y>
+        <width>91</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(255, 255, 255, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Приблизить</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="plusButtonLine">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>530</y>
+        <width>101</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color: white;
+background-color: rgba(255, 255, 255, 40);
+border: 1px solid rgba(255, 255, 255, 50);
+border-radius: 10px;
+font-size: 16pt;
+font-family:'Open Sans Condensed';
+}
+
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 60);
+}</string>
+      </property>
+      <property name="text">
+       <string>Приблизить</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MplWidget</class>
+   <extends>QWidget</extends>
+   <header>mplwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

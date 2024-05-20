@@ -32,8 +32,11 @@ class MplCanvas(FigureCanvasQTAgg):
 class Svekla_GUI(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
+        self.maxim_ind = None
+        self.max_ind = None
         self.names = None
         self.allSolution = None
+        self.solution = None
         self.matrix = None
         self.setupUi(self)
         self.setFixedSize(800, 600)
@@ -43,6 +46,8 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         self.backToWelcomeButton_2.clicked.connect(self.switch_to_welcome)
         self.readMatrixFileButton.clicked.connect(self.readMatrix)
         self.runProcessProgramModule.clicked.connect(self.runDemo)
+        self.plusButtonHist.clicked.connect(self.showHist)
+        self.plusButtonLine.clicked.connect(self.showLine)
 
         # Модуль тестирования
         self.testStartButton.clicked.connect(self.switch_to_test)
@@ -86,7 +91,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
 
     def run(self):
         maxes = [0] * 7
-        allSolution = []
+        self.allSolution = []
         if self.ripeningCheck.isChecked():
             nu = int(self.nu.text())
         else:
@@ -102,7 +107,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
                         self.calculateFunc(matrix, algo.get_provident_greedy_solution_upgrade(matrix, nu, 10)),
                         self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, 8))
                         ]
-            allSolution.append(solution)
+            self.allSolution.append(solution)
 
             # print(solution)
             maxes[solution.index(max(solution))] += 1
@@ -120,7 +125,7 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
         max_k_for_gk = k_for_gk.index(max(k_for_gk))
 
         # print(matrix)
-        solution = [self.calculateFunc(matrix, algo.get_max_solution(matrix)),
+        self.solution = [self.calculateFunc(matrix, algo.get_max_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_greedy_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_provident_solution(matrix)),
                     self.calculateFunc(matrix, algo.get_greedy_provident_solution(matrix, nu)),
@@ -130,58 +135,82 @@ class Svekla_GUI(QMainWindow, Ui_MainWindow):
                                        algo.get_provident_greedy_solution_upgrade(matrix, nu, max_k_for_tkg + 1)),
                     self.calculateFunc(matrix, algo.get_greedy_solution_upgrade(matrix, max_k_for_gk + 1))
                     ]
-        allSolution.append(solution[1:])
+        self.allSolution.append(self.solution[1:])
 
         # print(solution)
-        max_ind = solution.index(max(solution[1:]))
+        self.max_ind = self.solution.index(max(self.solution[1:]))
         # print(max_ind)
-        min_value = min(solution[1:])
-        names = ["Максимальная", "Жадная", "Бережливая", "Жадно-\nБережливая", "Бережливо-\nЖадная", "CTG",
+        min_value = min(self.solution[1:])
+        self.names = ["Максимальная", "Жадная", "Бережливая", "Жадно-\nБережливая", "Бережливо-\nЖадная", "CTG",
                  "T(k)G\nk=10",
                  "G(k)\nk=8"]
-        maxim_ind = maxes.index(max(maxes)) + 1
-        plt.figure()
+        self.maxim_ind = maxes.index(max(maxes)) + 1
+
+        self.MplLine.canvas.axes.clear()
+        for j in range(0, 7):
+            x = []
+            y = []
+            for i in range(len(self.allSolution)):
+                x.append(i)
+                y.append(self.allSolution[i][j])
+            self.MplLine.canvas.axes.plot(x, y, label=self.names[j + 1], marker='o', markersize=3)
+        self.MplLine.canvas.axes.set_title("Результаты стратегий по годам")
+        self.MplLine.canvas.draw()
+
+        names_short = ["М", "Ж", "Б", "Ж-Б", "Б-Ж", "CTG",
+                 "T(k)G",
+                 "G(k)"]
+        self.MplHist.canvas.axes.clear()
         for i in range(8):
-            if i == max_ind and i == maxim_ind:
-                plt.bar(names[i], solution[i], width=0.6, color="red", label=names[i], edgecolor="green", linewidth=2,
+            if i == self.max_ind and i == self.maxim_ind:
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="red", label=names_short[i], edgecolor="green", linewidth=2,
                         hatch='\\\\\\')
-            elif i == max_ind:
-                plt.bar(names[i], solution[i], width=0.6, color="red", label=names[i])
-            elif i == maxim_ind:
-                plt.bar(names[i], solution[i], width=0.6, color="blue", label=names[i], edgecolor="green", linewidth=2,
+            elif i == self.max_ind:
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="red", label=names_short[i])
+            elif i == self.maxim_ind:
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="blue", label=names_short[i], edgecolor="green", linewidth=2,
                         hatch='\\\\\\')
             else:
-                plt.bar(names[i], solution[i], width=0.6, color="blue", label=names[i])
+                self.MplHist.canvas.axes.bar(names_short[i], self.solution[i], width=0.6, color="blue", label=names_short[i])
+        self.MplHist.canvas.axes.set_title("Результаты стратегий по годам")
+        self.MplHist.canvas.draw()
+
+    def showHist(self):
+        min_value = min(self.solution[1:])
+        plt.figure()
+        for i in range(8):
+            if i == self.max_ind and i == self.maxim_ind:
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="red", label=self.names[i], edgecolor="green",
+                        linewidth=2,
+                        hatch='\\\\\\')
+            elif i == self.max_ind:
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="red", label=self.names[i])
+            elif i == self.maxim_ind:
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="blue", label=self.names[i], edgecolor="green",
+                        linewidth=2,
+                        hatch='\\\\\\')
+            else:
+                plt.bar(self.names[i], self.solution[i], width=0.6, color="blue", label=self.names[i])
         plt.ylim(min_value - (min_value * 0.1))
         plt.title("Результаты стратегий в последний год")
         plt.xlabel("Стратегия")
         plt.ylabel("Целевая функция")
-        #self.update_graph()
+        plt.show()
+
+    def showLine(self):
         plt.figure()
         for j in range(0, 7):
             x = []
             y = []
-            for i in range(len(allSolution)):
+            for i in range(len(self.allSolution)):
                 x.append(i)
-                y.append(allSolution[i][j])
-            plt.plot(x, y, label=names[j + 1], marker='o', markersize=3)
+                y.append(self.allSolution[i][j])
+            plt.plot(x, y, label=self.names[j + 1], marker='o', markersize=3)
         plt.title("Результаты стратегий по годам")
         plt.xlabel("Год")
         plt.ylabel("Целевая функция")
         plt.legend()
         plt.show()
-
-    #def update_graph(self):
-        #self.MplWidget.canvas.axes.clear()
-        #for j in range(0, 7):
-            #x = []
-            #y = []
-            #for i in range(len(self.allSolution)):
-                #x.append(i)
-                #y.append(self.allSolution[i][j])
-            #self.MplWidget.canvas.axes.plot(x, y, label=self.names[j + 1], marker='o', markersize=3)
-        #self.MplWidget.canvas.axes.set_title("Результаты стратегий по годам")
-        #self.MplWidget.canvas.draw()
 
     def switch_to_welcome(self):
         self.stackedWidget.setCurrentIndex(0)

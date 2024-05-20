@@ -20,6 +20,23 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComb
     QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
     QTableWidget, QTableWidgetItem, QWidget)
 
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from PySide6.QtWidgets import*
+from matplotlib.figure import Figure
+
+class MplWidget(QWidget):
+
+        def __init__(self, parent=None):
+                QWidget.__init__(self, parent)
+
+                self.canvas = FigureCanvas(Figure())
+
+                vertical_layout = QVBoxLayout()
+                vertical_layout.addWidget(self.canvas)
+
+                self.canvas.axes = self.canvas.figure.add_subplot(111)
+                self.setLayout(vertical_layout)
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -567,6 +584,42 @@ class Ui_MainWindow(object):
 "font-size: 20pt;\n"
 "font-family:'Open Sans Condensed';")
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.MplHist = MplWidget(self.testPage)
+        self.MplHist.setObjectName(u"MplHist")
+        self.MplHist.setGeometry(QRect(10, 310, 370, 210))
+        self.MplLine = MplWidget(self.testPage)
+        self.MplLine.setObjectName(u"MplLine")
+        self.MplLine.setGeometry(QRect(410, 310, 370, 210))
+        self.plusButtonHist = QPushButton(self.testPage)
+        self.plusButtonHist.setObjectName(u"plusButtonHist")
+        self.plusButtonHist.setGeometry(QRect(140, 530, 91, 24))
+        self.plusButtonHist.setStyleSheet(u"QPushButton{\n"
+"color: white;\n"
+"background-color: rgba(255, 255, 255, 40);\n"
+"border: 1px solid rgba(255, 255, 255, 50);\n"
+"border-radius: 10px;\n"
+"font-size: 16pt;\n"
+"font-family:'Open Sans Condensed';\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"background-color: rgba(255, 255, 255, 60);\n"
+"}")
+        self.plusButtonLine = QPushButton(self.testPage)
+        self.plusButtonLine.setObjectName(u"plusButtonLine")
+        self.plusButtonLine.setGeometry(QRect(560, 530, 101, 24))
+        self.plusButtonLine.setStyleSheet(u"QPushButton{\n"
+"color: white;\n"
+"background-color: rgba(255, 255, 255, 40);\n"
+"border: 1px solid rgba(255, 255, 255, 50);\n"
+"border-radius: 10px;\n"
+"font-size: 16pt;\n"
+"font-family:'Open Sans Condensed';\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"background-color: rgba(255, 255, 255, 60);\n"
+"}")
         self.stackedWidget.addWidget(self.testPage)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -638,5 +691,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u0441\u0430\u0445\u0430\u0440\u0438\u0441\u0442\u043e\u0441\u0442\u0438:", None))
         self.backToWelcomeButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u041c\u043e\u0434\u0443\u043b\u044c \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f", None))
+        self.plusButtonHist.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u0431\u043b\u0438\u0437\u0438\u0442\u044c", None))
+        self.plusButtonLine.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u0431\u043b\u0438\u0437\u0438\u0442\u044c", None))
     # retranslateUi
 
